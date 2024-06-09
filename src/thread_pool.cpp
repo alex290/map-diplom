@@ -15,7 +15,7 @@ void thread_pool::work()
 {
     s_queue->m.lock();
     std::cout << "Start working thread id " << std::this_thread::get_id() << std::endl;
-     s_queue->m.unlock();
+    s_queue->m.unlock();
 
     // while (!s_queue->falg_done)
     // {
@@ -32,6 +32,11 @@ void thread_pool::work()
     //     task();
     //     wor_queue.pop();
     // }
+}
+
+void thread_pool::new_tread(std::function<void(void)>&& f)
+{
+    vecOfThreads.push_back(std::thread(f));
 }
 
 void thread_pool::submit(std::function<void(void)>&& f)

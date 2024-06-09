@@ -12,6 +12,8 @@ public:
 
     void work();
 
+    void new_tread(std::function<void(void)>&& f);
+
     void submit(std::function<void(void)>&& f);
 
 private:
