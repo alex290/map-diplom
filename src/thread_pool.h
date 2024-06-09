@@ -12,7 +12,7 @@ public:
 
     void work();
 
-    void submit(std::function<void(void)>& f);
+    void submit(std::function<void(void)>&& f);
 
 private:
     std::vector<std::thread> vecOfThreads;

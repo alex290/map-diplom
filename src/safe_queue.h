@@ -14,7 +14,7 @@ public:
     ~safe_queue();
 
     std::atomic<bool> falg_done{ false };
-    static std::mutex m;
+    std::mutex m;
 
     void push(std::function<void(void)>&& f);
 

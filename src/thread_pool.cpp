@@ -34,7 +34,7 @@ void thread_pool::work()
     // }
 }
 
-void thread_pool::submit(std::function<void(void)>& f)
+void thread_pool::submit(std::function<void(void)>&& f)
 {
     // метод push — записывает в начало очереди новую задачу. При этом захватывает мьютекс, а после окончания операции нотифицируется условная переменная;
     s_queue->push(std::move(f));
