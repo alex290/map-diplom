@@ -27,13 +27,10 @@ public:
     void pop()
     {
         std::lock_guard<std::mutex> lk(m);
-
-        data_cond.wait(lk, [this] {
-            auto task = wor_queue.front();
-            auto res = task();
-            wor_queue.pop();
-            return res;
-        });
+        data_cond.wait(lk, [this] { return !wor_queue.empty(); });
+        auto task = wor_queue.front();
+        task();
+        wor_queue.pop();
     };
 
 private:
