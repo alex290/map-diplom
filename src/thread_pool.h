@@ -4,20 +4,35 @@
 #include <thread>
 #include "safe_queue.h"
 
+template <typename T>
+
 class thread_pool
 {
 public:
-    thread_pool();
-    ~thread_pool();
+    thread_pool()
+    {
+        processor_count = std::thread::hardware_concurrency();
+    };
+    // ~thread_pool(){
+    // };
 
-    void work();
+    void work()
+    {
+        std::cout << "Start working thread id " << std::this_thread::get_id() << std::endl;
 
-    void new_tread(std::function<void(void)>&& f);
+        while (!s_queue.empty())
+        {
+            auto task = s_queue.pop();
+        }
+    };
 
-    void submit(std::function<void(void)>&& f);
+    void submit(T&& f)
+    {
+        s_queue.push(std::move(f));
+    };
 
 private:
     std::vector<std::thread> vecOfThreads;
     int processor_count;
-    // safe_queue* s_queue;
+    safe_queue<T> s_queue;
 };

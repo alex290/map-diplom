@@ -33,6 +33,9 @@ public:
         wor_queue.pop();
         return ret;
     };
+    bool is_empty(){
+        return wor_queue.empty();
+    };
 
 private:
     std::queue<T> wor_queue;
