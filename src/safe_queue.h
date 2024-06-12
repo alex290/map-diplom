@@ -24,13 +24,14 @@ public:
         wor_queue.push(std::move(f));
         data_cond.notify_one();
     }
-    void pop()
+    auto pop()
     {
         std::lock_guard<std::mutex> lk(m);
         data_cond.wait(lk, [this] { return !wor_queue.empty(); });
         auto task = wor_queue.front();
-        task();
+        auto ret = task();
         wor_queue.pop();
+        return ret;
     };
 
 private:
