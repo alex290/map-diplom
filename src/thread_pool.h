@@ -19,5 +19,5 @@ public:
 private:
     std::vector<std::thread> vecOfThreads;
     int processor_count;
-    safe_queue* s_queue;
+    // safe_queue* s_queue;
 };
