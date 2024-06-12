@@ -30,8 +30,9 @@ public:
 
         data_cond.wait(lk, [this] {
             auto task = wor_queue.front();
+            auto res = task();
             wor_queue.pop();
-            return task();
+            return res;
         });
     };
 
