@@ -1,6 +1,6 @@
 #include "thread_pool.h"
 
-std::queue<std::function<void(void)>> wor_queue;
+// std::queue<std::function<void(void)>> wor_queue;
 void func1()
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(200));
@@ -35,7 +35,7 @@ void addF2()
 
 int main(int, char**)
 {
-    thread_pool<addF1> tr_p;
+    thread_pool<addF1> tr_p;  //  ОШИБКА
 
     // Заполняем очередь задачами
     // tr_p.new_tread(std::move(addF1));
