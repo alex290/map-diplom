@@ -23,6 +23,7 @@ public:
         while (!s_queue.empty())
         {
             auto task = s_queue.pop();
+            task;
         }
     };
 

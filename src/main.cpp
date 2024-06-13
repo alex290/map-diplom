@@ -35,7 +35,7 @@ void addF2()
 
 int main(int, char**)
 {
-    // thread_pool tr_p;
+    thread_pool<addF1> tr_p;
 
     // Заполняем очередь задачами
     // tr_p.new_tread(std::move(addF1));
