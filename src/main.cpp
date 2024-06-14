@@ -39,7 +39,7 @@ int main(int, char**)
     tr_p.submit(func1);
     tr_p.submit(func2);
 
-    tr_p.work();
+    tr_p.work(); // С ним возникает ошибка сборки.
 
     // Заполняем очередь задачами
     // tr_p.new_tread(std::move(addF1));
