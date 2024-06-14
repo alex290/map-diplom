@@ -35,7 +35,11 @@ void addF2()
 
 int main(int, char**)
 {
-    thread_pool<addF1> tr_p;  //  ОШИБКА
+    thread_pool<std::function<void(void)>> tr_p;
+    tr_p.submit(func1);
+    tr_p.submit(func2);
+
+    tr_p.work();
 
     // Заполняем очередь задачами
     // tr_p.new_tread(std::move(addF1));
