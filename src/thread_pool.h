@@ -20,7 +20,7 @@ public:
     {
         std::cout << "Start working thread id " << std::this_thread::get_id() << std::endl;
 
-        while (!s_queue.empty())
+        while (!s_queue.is_empty())
         {
             auto task = s_queue.pop();
             task;
