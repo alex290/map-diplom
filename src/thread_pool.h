@@ -12,14 +12,14 @@ public:
     thread_pool()
     {
         processor_count = std::thread::hardware_concurrency();
+        
         // Заполняем Вектор потоков
         for (size_t i = 0; i < processor_count - 2; i++)
         {
             vecOfThreads.push_back(std::thread(work));
         }
     };
-    // ~thread_pool(){
-    // };
+
 
     void work()
     {
