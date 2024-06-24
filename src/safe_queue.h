@@ -27,11 +27,11 @@ public:
     auto pop()
     {
         std::lock_guard<std::mutex> lk(m);
-        data_cond.wait(lk, [this] { return !wor_queue.empty(); });
+        data_cond.wait(lk, [this]{ return !wor_queue.empty(); });
         auto task = wor_queue.front();
-        auto ret = task();
+        // auto ret = task();
         wor_queue.pop();
-        return ret;
+        return task;
     };
     bool is_empty(){
         return wor_queue.empty();
