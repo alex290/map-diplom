@@ -42,5 +42,6 @@ int main(int, char**)
     
     t1.join();
     t2.join();
+    tr_p.set_done();
 
 }

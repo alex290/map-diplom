@@ -31,10 +31,33 @@ public:
     {
         std::cout << "Start working thread id " << std::this_thread::get_id() << std::endl;
 
-        while (!s_queue.is_empty())
+        // while (!s_queue.is_empty())
+        // {
+        //     auto task = s_queue.pop();
+        //     task;
+        // }
+
+        while (flag_done)
         {
-            auto task = s_queue.pop();
-            task;
+            // std::function<void()> task;
+            if (!s_queue.is_empty())
+            {
+                // s_queue.try_pop();
+                
+                auto task = s_queue.pop();
+                try
+                {
+                    task;
+                }
+                catch (...)
+                {
+                    std::cout << std::this_thread::get_id() << std::endl;
+                }
+            }
+            else
+            {
+                std::this_thread::yield();
+            }
         }
     };
 
@@ -43,8 +66,14 @@ public:
         s_queue.push(std::move(f));
     };
 
+    void set_done()
+    {
+        flag_done = true;
+    }
+
 private:
     std::vector<std::thread> vecOfThreads;
     int processor_count;
     safe_queue<T> s_queue;
+    std::atomic<bool> flag_done{ false };
 };
